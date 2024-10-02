@@ -8,3 +8,8 @@
 
 * Any csv file can be added to the 'data' directory
     * The path must be refactored in the 'AI_ML Ensemble Learning' notebook to point to the new dataset
+
+### Code
+
+* Majority of logic is handled in the classes folder
+    * The notebook is used to call the methods in these classes
