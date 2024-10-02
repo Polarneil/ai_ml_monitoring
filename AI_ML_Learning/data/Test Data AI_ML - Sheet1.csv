@@ -1,0 +1,11 @@
+Account Name,Account Segment,Account Size,Account Industry,Account Region,Product Code,Product Family,Date,Quantity,Unit Price,Amount,Cost
+Beta LLC,SMB,Large,Retail,Europe,P002,Hardware,2024-08-23,95,41.4,3933,3833
+Iota Group,SMB,Large,Manufacturing,North America,P001,Hardware,2024-05-20,28,118.18,3309.08,3209.08
+Iota Group,SMB,Large,Technology,Latin America,P002,Software,2023-12-11,76,59.37,4511.85,4411.85
+Gamma Inc,Enterprise,Medium,Retail,Asia-Pacific,P002,Hardware,2024-02-11,98,41.12,4029.35,917.36
+Beta LLC,Mid-Market,Medium,Technology,Asia-Pacific,P001,Services,2023-12-09,59,98.75,5826.05,4879.02
+Eta Solutions,SMB,Large,Retail,Middle East,P003,Services,2024-02-02,25,293.65,7341.15,706.21
+Delta Ltd,Mid-Market,Small,Healthcare,North America,P004,Software,2024-07-12,59,113.92,6721.16,2141.74
+Zeta Enterprises,Mid-Market,Small,Retail,North America,P005,Services,2024-06-30,22,263.97,5807.26,1601.65
+Theta Systems,Mid-Market,Medium,Technology,Europe,P003,Hardware,2024-02-10,30,279.87,8396.22,4122.71
+Eta Solutions,Mid-Market,Small,Healthcare,Middle East,P003,Hardware,2024-07-24,84,65.39,5493.08,4481.07
