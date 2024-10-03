@@ -1,7 +1,7 @@
 import pandas as pd
 from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestRegressor
-from sklearn.metrics import mean_squared_error
+from sklearn.metrics import mean_squared_error, r2_score  
 from sklearn.preprocessing import LabelEncoder
 import logging
 
@@ -17,7 +17,7 @@ class RandomForestRegression:
 
     def rf_regression(self):
         # Split the dataset into training and testing sets
-        X_train, X_test, y_train, y_test = train_test_split(self.X, self.y, test_size=0.2, random_state=42)
+        X_train, X_test, y_train, y_test = train_test_split(self.X, self.y, test_size=0.35, random_state=42)
 
 
         # Create and train the Random Forest Regression model
@@ -27,7 +27,10 @@ class RandomForestRegression:
         # Make predictions and evaluate the model
         y_pred = self.model.predict(X_test)
         mse = mean_squared_error(y_test, y_pred)
+        r2 = r2_score(y_test, y_pred)
+
         logger.info(f"\nMean Squared Error: {mse}\n")
+        logger.info(f"R-squared: {r2}\n")
 
 
         # Calculate and display feature importance

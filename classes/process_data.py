@@ -17,8 +17,11 @@ class PrepData:
         """
         Function to evaluate dataset using OpenAI API
         """
-        # Convert the dataset to a string format
-        dataset_str = self.dataset.to_csv(index=False)
+        # Take a subset of the data to cut down on token count
+        sample_dataset = self.dataset.head(5)
+
+        # Convert the dataset to a string format for the prompt
+        dataset_str = sample_dataset.to_csv(index=False)
 
         example_return_format = "{'selected_features': [list_of_selected_features], 'target_column': target_column}"
 
