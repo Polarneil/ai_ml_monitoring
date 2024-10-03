@@ -29,7 +29,3 @@ rf_regressor = RandomForestRegression(
     )
 
 rf_regressor.rf_regression()
-
-# COMMAND ----------
-
-
