@@ -1,6 +1,4 @@
-import openai
 from sklearn.preprocessing import LabelEncoder
-from openai import OpenAI
 import logging
 import ast
 
@@ -8,10 +6,9 @@ logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 class PrepData:
-    def __init__(self, dataset, openai_key):
+    def __init__(self, dataset, OpenAIWrapper):
         self.dataset = dataset
-        self.openai_key = openai_key
-        self.client = OpenAI(api_key=self.openai_key)
+        self.OpenAIWrapper = OpenAIWrapper
 
     def evaluate_dataset_via_ai(self):
         """
@@ -20,12 +17,12 @@ class PrepData:
         # Take a subset of the data to cut down on token count
         sample_dataset = self.dataset.head(5)
 
-        # Convert the dataset to a string format for the prompt
+        # Convert the dataset to string format for the prompt
         dataset_str = sample_dataset.to_csv(index=False)
 
         example_return_format = "{'selected_features': [list_of_selected_features], 'target_column': target_column}"
 
-        # Create a prompt for the AI to evaluate the dataset
+        # Prompt for the AI to evaluate the dataset
         prompt = f"""[NO PROSE]
         The following is a dataset in CSV format. Please evaluate the dataset and return a list of selected features and a target column for a Random Forest Regression model.
 
@@ -37,12 +34,7 @@ class PrepData:
         {dataset_str}
         """
 
-        response = self.client.chat.completions.create(
-            model="gpt-4o-mini",
-            messages=[{"role": "user", "content": prompt}],
-            max_tokens=4096,
-        )
-        message = response.choices[0].message.content
+        message = self.OpenAIWrapper.chat_completion(prompt)
 
         return message
 

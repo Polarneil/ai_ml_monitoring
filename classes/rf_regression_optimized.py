@@ -109,8 +109,10 @@ class RandomForestRegression:
             logger.info(f"\nLabel encoding for {column}: {mapping}\n")
         
         logger.info(f"\n{self.return_model_params()}\n")
+
+        return self.return_model_params()
     
     def return_model_params(self):
         # Return the results paired with the model parameters to further pass into an AI prompt for model tuning
 
-        return self.mse, self.r2, self.accuracy, self.model.get_params(), self.feature_importance_df
+        return self.mse, self.r2, self.accuracy, self.test_size, self.model.get_params(), self.feature_importance_df
