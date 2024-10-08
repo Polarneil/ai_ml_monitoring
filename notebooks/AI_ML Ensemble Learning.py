@@ -23,7 +23,7 @@ openai_wrapper = OpenAIWrapper(openai_key)
 
 
 # Preprocess the dataset based on AI evaluation
-dataset = pd.read_csv('../data/Restaurant_revenue (1).csv')
+dataset = pd.read_csv('../data/Advertising Budget and Sales.csv')
 
 data_prepper = PrepData(dataset, openai_wrapper)
 X, y, label_encoders = data_prepper.preprocess_dataset()
@@ -45,7 +45,7 @@ prompt_docs = "../docs/RandomForestRegressorDocs.txt"
 performance_tracking_file = "../docs/PerformanceTracking.json"
 
 num_runs = 1
-while accuracy < 80 and num_runs != 10:
+while accuracy < 90 and num_runs != 10:
     num_runs += 1
     tuner = TuneModel(openai_wrapper, prompt_docs)
 
@@ -79,3 +79,7 @@ while accuracy < 80 and num_runs != 10:
         )
 
     mse, r2, accuracy, test_size, model_params, feature_importance = rf_regressor.rf_regression()
+
+# COMMAND ----------
+
+
