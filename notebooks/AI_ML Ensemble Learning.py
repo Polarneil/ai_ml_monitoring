@@ -79,7 +79,3 @@ while accuracy < 90 and num_runs != 10:
         )
 
     mse, r2, accuracy, test_size, model_params, feature_importance = rf_regressor.rf_regression()
-
-# COMMAND ----------
-
-
