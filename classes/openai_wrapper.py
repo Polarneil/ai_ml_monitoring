@@ -12,9 +12,10 @@ class OpenAIWrapper:
 
     def chat_completion(self, prompt):
         response = self.client.chat.completions.create(
-                model="gpt-3.5-turbo",
+                model="gpt-4o",
                 messages=[{"role": "user", "content": prompt}],
                 max_tokens=4096,
+                temperature=0.8,
             )
         message = response.choices[0].message.content
 

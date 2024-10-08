@@ -4,6 +4,8 @@ from sklearn.ensemble import RandomForestRegressor
 from sklearn.metrics import mean_squared_error, r2_score
 from sklearn.preprocessing import LabelEncoder
 import numpy as np
+import json
+import os
 import logging
 
 logging.basicConfig(level=logging.INFO)
@@ -14,6 +16,8 @@ class RandomForestRegression:
         self, 
         X, 
         y,
+        num_runs = 1,
+        performance_tracking_file = "../docs/PerformanceTracking.json",
 
         n_estimators = 100,
         criterion = 'squared_error',
@@ -43,6 +47,8 @@ class RandomForestRegression:
 
         self.X = X
         self.y = y
+        self.num_runs = num_runs
+        self.performance_tracking_file = performance_tracking_file
 
         self.n_estimators = n_estimators
         self.criterion = criterion
@@ -110,9 +116,32 @@ class RandomForestRegression:
         
         logger.info(f"\n{self.return_model_params()}\n")
 
+        self.track_model_params()
+
         return self.return_model_params()
     
     def return_model_params(self):
         # Return the results paired with the model parameters to further pass into an AI prompt for model tuning
 
         return self.mse, self.r2, self.accuracy, self.test_size, self.model.get_params(), self.feature_importance_df
+    
+    def track_model_params(self):
+        perf_dict = {
+            "Run": self.num_runs,
+            "MSE": self.mse,
+            "R2": self.r2,
+            "Accuracy": self.accuracy,
+            "Test Size": self.test_size,
+            "Model Parameters": self.model.get_params(),
+        }
+
+        if os.path.exists(self.performance_tracking_file) and os.path.getsize(self.performance_tracking_file) > 0:
+            with open(self.performance_tracking_file, 'r') as file:
+                perf_data = json.load(file)
+        else:
+            perf_data = []
+
+        perf_data.append(perf_dict)
+
+        with open(self.performance_tracking_file, 'w') as file:
+            json.dump(perf_data, file, indent=4)
