@@ -1,14 +1,23 @@
 from sklearn.preprocessing import LabelEncoder
 import logging
 import ast
+import os
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 class PrepData:
-    def __init__(self, dataset, OpenAIWrapper):
+    def __init__(self, dataset, OpenAIWrapper, performance_tracking_file):
         self.dataset = dataset
         self.OpenAIWrapper = OpenAIWrapper
+        self.performance_tracking_file = performance_tracking_file
+
+    def reset_performance_tracking(self):
+        if os.path.exists(self.performance_tracking_file):
+            os.remove(self.performance_tracking_file)
+            logger.info("Performance tracking file reset. Proceeding...")
+        else:
+            logger.info("Performance tracking file does not exist. Proceeding...")
 
     def evaluate_dataset_via_ai(self):
         """
@@ -61,6 +70,7 @@ class PrepData:
         """
         Function to preprocess dataset based on selected features and target column
         """
+        self.reset_performance_tracking()
         selected_features, target_column = self.parse_evaluation()
 
         dataset = self.dataset.dropna()  # Drop rows with null values

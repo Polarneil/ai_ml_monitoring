@@ -38,7 +38,7 @@ class TuneModel:
 
         Given these results, your only goal is to improve accuracy of the model with new parameters and test size.
         
-        Your task is to tune the model to improve the accuracy. You will return a list of JSON objects with no ```json```. The first element in the list will be the new parameters. The second element will be the new test size with the key 'test_size'. It is crucial that you will not include any escape characters in your response like `\`. Never ever include `\` characters in your response. Use the following example return format as a reference:
+        Your task is to tune the model to improve the accuracy. You will return a list of JSON objects with no ```json``` in the sring. This needs to avoid syntax errors. The first element in the list will be the new parameters. The second element will be the new test size with the key 'test_size'. It is crucial that you will not include any escape characters in your response like `\`. Never ever include `\` characters in your response. You will only ever return the json response and nothing more. Never any verbiage [NO PROSE]. Use the following example return format as a reference:
         {example_return_format}
 
 
