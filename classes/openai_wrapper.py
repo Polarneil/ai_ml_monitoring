@@ -1,9 +1,9 @@
-import openai
 from openai import OpenAI
 import logging
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
+
 
 class OpenAIWrapper:
     def __init__(self, openai_key):

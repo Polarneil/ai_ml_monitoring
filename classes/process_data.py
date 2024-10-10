@@ -6,6 +6,7 @@ import os
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
+
 class PrepData:
     def __init__(self, dataset, OpenAIWrapper, performance_tracking_file):
         self.dataset = dataset

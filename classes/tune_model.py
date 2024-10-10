@@ -3,6 +3,7 @@ import ast
 import pandas as pd
 import json
 
+
 class TuneModel:
     def __init__(self, OpenAIWrapper, prompt_docs):
         self.OpenAIWrapper = OpenAIWrapper
